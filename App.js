@@ -3,24 +3,46 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [countNos, setCountNos] = useState(0)
+  const [countEles, setCountEles] = useState(0)
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>MARCADOR</Text>
 
-        <Text style={styles.textoContador}>{count}</Text>
+      <View style={styles.placares}>
 
-      <View style={styles.botaoContador}>
-        <View style={styles.botaoMais}>
-          <Button color="#009e08" title='+' onPress={() => setCount(count + 1)}/>
+        <View style={styles.time}>
+          <Text style={styles.titulo}>Nós</Text>
+          <Text style={styles.textoContador}>{countNos}</Text>
+
+          <View style={styles.botaoContador}>
+            <View style={styles.botao}>
+              <Button color="#009e08" title='+' onPress={() => setCountNos(countNos + 1)} />
+            </View>
+
+            <View style={styles.botao}>
+              <Button color="#c20000" title='-' onPress={() => setCountNos(countNos - 1)} />
+            </View>
+          </View>
         </View>
-        <View style={styles.botaoMais}>
-          <Button color="#c20000" title='-' onPress={() => setCount(count - 1)}/>
+
+        <View style={styles.time}>
+          <Text style={styles.titulo}>Eles</Text>
+          <Text style={styles.textoContador}>{countEles}</Text>
+
+          <View style={styles.botaoContador}>
+            <View style={styles.botao}>
+              <Button color="#009e08" title='+' onPress={() => setCountEles(countEles + 1)} />
+            </View>
+
+            <View style={styles.botao}>
+              <Button color="#c20000" title='-' onPress={() => setCountEles(countEles - 1)} />
+            </View>
+          </View>
         </View>
+
       </View>
 
-      <StatusBar style="auto" />
-    
     </View>
   );
 }
@@ -32,23 +54,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  placares: {
+    flexDirection: 'row',
+    gap: 60,
+  },
+
+  time: {
+    alignItems: 'center',
+  },
+
   titulo: {
     fontSize: 40,
     fontWeight: 'bold',
   },
+
   textoContador: {
     fontSize: 60,
-    marginTop: 30,
+    marginTop: 20,
   },
+
   botaoContador: {
-    flexDirection:'row',
-    marginTop:60,
-    gap:20,
+    flexDirection: 'row',
+    marginTop: 30,
+    gap: 20,
   },
-  botaoMais: {
+
+  botao: {
     width: 80,
   },
-  botaoMenos: {
-    width: 80,
-  }
 });
