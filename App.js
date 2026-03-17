@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
 export default function App() {
   const [countNos, setCountNos] = useState(0)
@@ -12,19 +12,28 @@ export default function App() {
   const verificarVitoria = (nos, eles) => {
     if (nos >= 12) {
       setVitoriasNos(vitoriasNos + 1)
-      setCountNos(0)
-      setCountEles(0)
+      reiniciar()
       return true
     }
 
     if (eles >= 12) {
       setVitoriasEles(vitoriasEles + 1)
-      setCountNos(0)
-      setCountEles(0)
+      reiniciar()
       return true
     }
 
     return false
+  }
+
+  const reiniciar = () => {
+    setCountNos(0)
+    setCountEles(0)
+  }
+
+  const novoJogo = () => {
+    reiniciar()
+    setVitoriasNos(0)
+    setVitoriasEles(0)
   }
 
   const adicionarPontos = (time, pontos) => {
@@ -43,7 +52,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-
+      <Image
+        source={{ uri: 'https://atendimento.unipar.br/static/img/logouni2.png' }}
+        style={styles.imagem}
+      />
       <View style={styles.placares}>
 
         <View style={styles.time}>
@@ -129,6 +141,16 @@ export default function App() {
 
       </View>
 
+      <View style={styles.botoesControle}>
+        <View style={styles.botaoControle}>
+          <Button title="Reiniciar" color="#19090a" onPress={reiniciar} />
+        </View>
+
+        <View style={styles.botaoControle}>
+          <Button title="Novo Jogo" color="#19090a" onPress={novoJogo} />
+        </View>
+      </View>
+
       <StatusBar style="auto" />
     </View>
   )
@@ -139,11 +161,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center', 
+    padding:50
   },
   placares: {
     flexDirection: 'row',
-    gap: 60,
+    gap: 10,
   },
   time: {
     alignItems: 'center',
@@ -168,13 +191,26 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   botao: {
-    width: 80,
+    width: 70,
   },
   apostas: {
     marginTop: 20,
     gap: 10,
   },
   botaoAposta: {
-    width: 180,
+    width: 160,
+  },
+  botoesControle: {
+    marginTop: 30,
+    gap: 10,
+  },
+  botaoControle: {
+    width: 160,
+  },
+  imagem: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+    marginBottom: 20,
   },
 })
