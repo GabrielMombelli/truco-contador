@@ -5,7 +5,15 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 export default function App() {
   const [countNos, setCountNos] = useState(0)
   const [countEles, setCountEles] = useState(0)
-  
+
+  const adicionarPontos = (time, pontos) => {
+    if (time === 'nos') {
+      setCountNos(countNos + pontos)
+    } else {
+      setCountEles(countEles + pontos)
+    }
+  }
+
   return (
     <View style={styles.container}>
 
@@ -24,6 +32,24 @@ export default function App() {
               <Button color="#c20000" title='-' onPress={() => setCountNos(countNos - 1)} />
             </View>
           </View>
+
+          <View style={styles.apostas}>
+          <View style={styles.botaoAposta}>
+            <Button color={"#015b61"} title="Truco (3)" onPress={() => adicionarPontos('nos', 3)} />
+          </View>
+
+          <View style={styles.botaoAposta}>
+            <Button color={"#022363"} title="Seis (6)" onPress={() => adicionarPontos('nos', 6)} />
+          </View>
+
+          <View style={styles.botaoAposta}>
+            <Button color={"#4f0263"} title="Nove (9)" onPress={() => adicionarPontos('nos', 9)} />
+          </View>
+
+          <View style={styles.botaoAposta}>
+            <Button color={"#630102"} title="Doze (12)" onPress={() => adicionarPontos('nos', 12)} />
+          </View>
+        </View>
         </View>
 
         <View style={styles.time}>
@@ -39,10 +65,28 @@ export default function App() {
               <Button color="#c20000" title='-' onPress={() => setCountEles(countEles - 1)} />
             </View>
           </View>
+          <View style={styles.apostas}>
+            <View style={styles.botaoAposta}>
+              <Button color={"#015b61"} title="Truco (3)" onPress={() => adicionarPontos('nos', 3)} />
+            </View>
+
+            <View style={styles.botaoAposta}>
+              <Button color={"#022363"} title="Seis (6)" onPress={() => adicionarPontos('nos', 6)} />
+            </View>
+
+            <View style={styles.botaoAposta}>
+              <Button color={"#4f0263"} title="Nove (9)" onPress={() => adicionarPontos('nos', 9)} />
+            </View>
+
+            <View style={styles.botaoAposta}>
+              <Button color={"#630102"} title="Doze (12)" onPress={() => adicionarPontos('nos', 12)} />
+            </View>
+</View>
         </View>
 
       </View>
 
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -83,4 +127,11 @@ const styles = StyleSheet.create({
   botao: {
     width: 80,
   },
+  apostas: {
+    marginTop: 20,
+    gap: 10,
+  },
+  botaoAposta: {
+  width: 180,
+},
 });
